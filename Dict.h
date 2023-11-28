@@ -6,14 +6,10 @@ template <typename V>
 class Dict {
     public:
 
-	    virtual void insert(std::string key, V value);//{
-	   // }
-	    virtual V search(std::string key);//{
-	   // }
-	    virtual V remove(std::string key);//{
-	   // }
-	    virtual int entries();//{
-	   // }
+	    virtual void insert(std::string key, V value)=0;
+	    virtual V search(std::string key)=0;
+	    virtual V remove(std::string key)=0;
+	    virtual int entries()=0;
 
         // ... aquí los métodos virtuales puros
 };
