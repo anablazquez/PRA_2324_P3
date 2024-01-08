@@ -5,12 +5,12 @@
 #include <stdexcept>
 #include "BSNode.h"
 
-template <typename T> 
+template <typename V> 
 class BSTree {
     private:
        int nelem;
-	BSNode<T> *root; //miembros privados
-	BSNode<T>* search(BSNode<T>* n, T e) const{
+	BSNode<V> *root; //miembros privados
+	BSNode<V>* search(BSNode<V>* n, V  e) const{//pongo v porque si pongo T no me va
 
 		 if(n == nullptr)
                         throw std::runtime_error("No encontrado");
@@ -22,7 +22,7 @@ class BSTree {
 			return search(n->right, e);
 		}}
 
-	BSNode<T>* insert(BSNode<T>* n, T e){
+	BSNode<V>* insert(BSNode<V>* n, V e){
 		if(n == nullptr)
 		       	return new BSNode(e);//nodo  vacio
             else if(n->elem == e)
@@ -34,7 +34,7 @@ class BSTree {
             return n;
         }
 
-	void print_inorder(std::ostream &out, BSNode<T>* n) const{
+	void print_inorder(std::ostream &out, BSNode<V>* n) const{
 		if(n != nullptr){
                         print_inorder(out, n->left);
                         out<<n->elem<<" ";
@@ -43,7 +43,7 @@ class BSTree {
                 else
                         out<<"";
         }
-	BSNode<T>* remove(BSNode<T>* n, T e){
+	BSNode<V>* remove(BSNode<V>* n, V e){
 
 	  if(n == nullptr)
 		  throw std:: runtime_error("Elemento no encontrado");
@@ -63,14 +63,14 @@ class BSTree {
           
 
 	}
-	T max(BSNode<T>* n) const{
+	V max(BSNode<V>* n) const{
 		if(n == nullptr)
 			throw std::runtime_error("");
             else if(n->right != nullptr)//si el de la derecha no es 0
 		    return max(n->right);
             else return n->elem;}// si si que es cero se devuelve el valor de la raiz como el maximo
 		
-	BSNode<T>* remove_max(BSNode<T>* n){
+	BSNode<V>* remove_max(BSNode<V>* n){
 		if(n->right == nullptr) 
 			return n->left;//se elimina la raiz y solo se te queda la parte izquierda del nodo
             else{
@@ -78,7 +78,8 @@ class BSTree {
                 return n;
             }
         }
-	void delete_cascade(BSNode<T>* n) {
+	void delete_cascade(BSNode<V>* n) {
+
             if(n != nullptr){
 		    
             delete_cascade(n->left);
@@ -95,20 +96,20 @@ class BSTree {
 	int size() const {
 	
 	return nelem;}
-	T search(T e){
+	V search(V e){
 		return search(root, e)->elem;}//devuelve el elemento contenido por el nodo devuelto por el metodo privado
-	T operator[](T e) const{
+	V operator[](V e) const{
 
 		return search(e);}
-	 void insert(T e){
+	 void insert(V e){
 		 root=insert(root,e);
 		 nelem++;}
-	 friend std::ostream& operator<<(std::ostream &out, const BSTree<T> &bst){
+	 friend std::ostream& operator<<(std::ostream &out, const BSTree<V> &bst){
 	if(bst.root != nullptr)
 		       bst.print_inorder(out,bst.root);
                 return out; }
 
-	 void remove(T e){
+	 void remove(V e){
 		 root=remove(root,e);}
 
 
