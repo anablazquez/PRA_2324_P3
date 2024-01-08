@@ -27,6 +27,7 @@ class BSTreeDict: public Dict<V> {
    V operator[](std::string key){
 
 		return search(key);}
+
    V remove(std::string key) override{
                V aux = search(key);
                tree->remove(key);
