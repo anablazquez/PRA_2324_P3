@@ -70,13 +70,13 @@ class HashTable: public Dict<V> {
 
 	 void insert(std::string key, V value)override{
 		 
-		int pos = table[h(key)].search(key);//llamamos pos a h(key)
-
+		int pos = table[h(key)].search(key);//en la tabla con la posicion h(key) buscamos la key, si no esta nos drara posicion 0 pero si í que esta nos dara un numero entero
+		//una tabla con size h_(key)  se busca la key, t devuyelve la posicion si esta
                 if(pos >= 0)
                         throw std::runtime_error("Ya introducido");
 
-		TableEntry<V> aux(key, value);//tabla auxiliar para meter valor y key 
-		table[h(key)].prepend(aux);
+		TableEntry<V> aux(key, value);//clase table entry con su key y su value(cada cubito, pues creas un cubito/nodo con su key y su value)
+		table[h(key)].prepend(aux);//metes el nodo dentro de la Lista de nodos al principio
 		n++;//aumenta tamaño cubetas ocupadas
 				 //comprobar q no exista ya la key
 				 }
