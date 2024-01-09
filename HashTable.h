@@ -82,12 +82,12 @@ class HashTable: public Dict<V> {
 				 }
 	 V search(std::string key)override{// lo busca y si está q devuelva pos y value
 		int hash = h(key);
-		int pos = table[hash].search(key);
+		int pos = table[hash].search(key);// para buscar
 
                 if(pos < 0)
                         throw std::runtime_error("No encontrado");
 
-                V aux = table[hash].get(pos).value;
+                V aux = table[hash].get(pos).value;// para q te muestre que hay en esta POSICIOn
                 return aux;
 		   }
 
